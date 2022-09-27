@@ -1,0 +1,56 @@
+import os
+def display_board(list1):
+    print(list1[7]+" "+"|"+" "+list1[8]+" "+"|"+" "+list1[9]+"\n")
+    print(list1[4] + " " + "|" +" "+ list1[5] + " " + "|" +" "+ list1[6] + "\n")
+    print(list1[1] + " " + "|" +" "+ list1[2] + " " + "|" +" "+ list1[3] + "\n")
+player1="X"
+player2="O"
+
+def Logic_check(li,id,pl,indx):
+    if(li[7]+li[8]+li[9]==id*3 or li[4] + li[5] + li[6] == id * 3 or
+            li[1] + li[2] + li[3] == id * 3 or
+            li[7] + li[4] + li[1] == id * 3 or
+            li[8] + li[5] + li[2] == id * 3 or
+            li[9] + li[6] + li[3] == id * 3 or
+            li[7] + li[5] + li[3] == id * 3 or
+            li[9] + li[5] + li[1] == id * 3 or len(indx)==9):
+        if len(indx)>9:
+            print("game tied")
+        else:
+            print(pl+" "+id+" "+"won the game")
+        return True
+    return False
+player_input1=[" "]*10
+x=False
+k=0
+indexfilled=[0]
+while(x!=True):
+    os.system('cls')
+    if k%2==0:
+        i=int(input("Player1 : index input:\t"))
+        if i in indexfilled:
+            print("index already filled")
+            pass
+        else:
+
+            player_input1[i]="X"
+            display_board(player_input1)
+            x=Logic_check(player_input1,player1,"Player1",indexfilled)
+            indexfilled.append(i)
+    else:
+        i = int(input("Player2 : index input:\t"))
+        if i in indexfilled:
+            print("index already filled")
+            pass
+        else:
+
+            player_input1[i] = "O"
+            display_board(player_input1)
+            x = Logic_check(player_input1, player2,"player2",indexfilled)
+            indexfilled.append(i)
+    k+=1
+
+
+
+
+
